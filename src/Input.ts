@@ -156,8 +156,7 @@ export default class Input extends (EventTarget as TypedEventTarget<InputEventMa
   }
 
   /**
-   * Updates the action map.
-   * @fires Input#actionsUpdated
+   * Updates the action map, firing the `actionsUpdated` event.
    */
   public setActions(map: Record<string, InputActionAtom[]>) {
     // Update static map
