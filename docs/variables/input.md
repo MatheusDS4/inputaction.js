@@ -8,6 +8,6 @@
 
 > `const` **input**: [`Input`](../classes/Input.md) = `Input.input`
 
-Defined in: [src/Input.ts:366](https://github.com/hydroperx/inputaction.js/blob/81a9d50bb8dace8c4efcbe3dd2d006c7a5dc5b42/src/Input.ts#L366)
+Defined in: [src/Input.ts:398](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L398)
 
 The singleton instance of the `Input` class.

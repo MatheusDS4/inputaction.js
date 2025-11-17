@@ -27,12 +27,23 @@ export type InputActionKey = {
    * Whether the `Shift` key is used.
    */
   shift?: boolean;
+
+  /**
+   * Whether the meta key is used (e.g. the Windows Logo or Mac Command key).
+   */
+  meta?: boolean;
 };
 
 /**
  * Part of the Input API. It is used to identify the name of a specific user input key.
+ * 
+ * The `"meta"` key corresponds to the Windows logo or Mac Command key.
  */
 export type InputActionKeyName =
+  | "meta"
+  | "fn"
+  | "home"
+  | "end"
   | "leftArrow"
   | "rightArrow"
   | "upArrow"
@@ -48,6 +59,10 @@ export type InputActionKeyName =
   | "comma"
   | "dot"
   | "semicolon"
+  | "delete"
+  | "pageUp"
+  | "pageDown"
+  | "capsLock"
   | "f1"
   | "f2"
   | "f3"
@@ -102,6 +117,10 @@ const mapNavigatorKeyToThis = new Map<string, InputActionKeyName>([
   ["arrowright", "rightArrow"],
   ["arrowup", "upArrow"],
   ["arrowdown", "downArrow"],
+  ["left", "leftArrow"],
+  ["right", "rightArrow"],
+  ["up", "upArrow"],
+  ["down", "downArrow"],
   ["escape", "escape"],
   [" ", "spacebar"],
   ["enter", "enter"],
@@ -115,6 +134,16 @@ const mapNavigatorKeyToThis = new Map<string, InputActionKeyName>([
   [",", "comma"],
   [".", "dot"],
   [";", "semicolon"],
+  ["meta", "meta"],
+  ["os", "meta"],
+  ["fn", "fn"],
+  ["delete", "delete"],
+  ["del", "delete"],
+  ["pageup", "pageUp"],
+  ["pagedown", "pageDown"],
+  ["home", "home"],
+  ["end", "end"],
+  ["capslock", "capsLock"],
 ]);
 
 export function navigatorKeyToThis(

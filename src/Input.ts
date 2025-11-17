@@ -75,6 +75,9 @@ export default class Input extends (EventTarget as TypedEventTarget<InputEventMa
 
   /**
    * Returns the display text of a shortcut, such as `"Ctrl+A"`.
+   * 
+   * Check the [repository's respective source](https://github.com/hydroperx/inputaction.js/blob/master/src/Input.ts)
+   * for resulting key names in case you need overriding them.
    *
    * @param param Either an action name or a series of action atoms.
    */
@@ -96,6 +99,9 @@ export default class Input extends (EventTarget as TypedEventTarget<InputEventMa
         if (key.shift) {
           parts.push("Shift");
         }
+        if (key.meta) {
+          parts.push("Meta");
+        }
         parts.push(Input.keyNameDisplay(key.key));
         return parts.join("+");
       }
@@ -105,9 +111,16 @@ export default class Input extends (EventTarget as TypedEventTarget<InputEventMa
 
   /**
    * Returns the display text of an individual key name.
+   *
+   * Check the [repository's respective source](https://github.com/hydroperx/inputaction.js/blob/master/src/Input.ts)
+   * for resulting key names in case you need overriding them.
    */
   public static keyNameDisplay(name: InputActionKeyName): string {
     switch (name) {
+      case "meta":
+        return "Meta";
+      case "fn":
+        return "Fn";
       case "escape":
         return "Esc";
       case "leftArrow":
@@ -138,6 +151,18 @@ export default class Input extends (EventTarget as TypedEventTarget<InputEventMa
         return ".";
       case "semicolon":
         return ";";
+      case "delete":
+        return "Delete";
+      case "pageUp":
+        return "Pg Up";
+      case "pageDown":
+        return "Pg Dn";
+      case "home":
+        return "Home";
+      case "end":
+        return "End";
+      case "capsLock":
+        return "Caps Lock";
       default:
         return name.toUpperCase();
     }
@@ -198,6 +223,7 @@ export default class Input extends (EventTarget as TypedEventTarget<InputEventMa
               pressedTimestamp: 0,
               control: false,
               shift: false,
+              meta: false,
               alt: false,
             };
             Input.mPressedStatePoolKeys.set(keyName, state);
@@ -206,6 +232,7 @@ export default class Input extends (EventTarget as TypedEventTarget<InputEventMa
           state.pressedTimestamp = Date.now();
           state.control = evt.ctrlKey;
           state.shift = evt.shiftKey;
+          state.meta = evt.metaKey;
           state.alt = evt.altKey;
 
           // Dispatch pressed event
@@ -229,6 +256,7 @@ export default class Input extends (EventTarget as TypedEventTarget<InputEventMa
               pressedTimestamp: 0,
               control: false,
               shift: false,
+              meta: false,
               alt: false,
             };
             Input.mPressedStatePoolKeys.set(keyName, state);
@@ -236,6 +264,7 @@ export default class Input extends (EventTarget as TypedEventTarget<InputEventMa
           state.pressed = false;
           state.control = false;
           state.shift = false;
+          state.meta = false;
           state.alt = false;
 
           // Dispatch released event
@@ -273,6 +302,7 @@ export default class Input extends (EventTarget as TypedEventTarget<InputEventMa
             ? pressedState.control
             : !pressedState.control) &&
           (inputActionKey.shift ? pressedState.shift : !pressedState.shift) &&
+          (inputActionKey.meta ? pressedState.meta : !pressedState.meta) &&
           (inputActionKey.alt ? pressedState.alt : !pressedState.alt);
         if (pressed) {
           return true;
@@ -305,6 +335,7 @@ export default class Input extends (EventTarget as TypedEventTarget<InputEventMa
             ? pressedState.control
             : !pressedState.control) &&
           (inputActionKey.shift ? pressedState.shift : !pressedState.shift) &&
+          (inputActionKey.meta ? pressedState.meta : !pressedState.meta) &&
           (inputActionKey.alt ? pressedState.alt : !pressedState.alt);
         if (pressed && pressedState.pressedTimestamp > Date.now() - 15) {
           return true;
@@ -357,6 +388,7 @@ type PressedState = {
   pressedTimestamp: number;
   control: boolean;
   shift: boolean;
+  meta: boolean;
   alt: boolean;
 };
 

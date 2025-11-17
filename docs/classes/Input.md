@@ -6,7 +6,7 @@
 
 # Class: Input
 
-Defined in: [src/Input.ts:70](https://github.com/hydroperx/inputaction.js/blob/81a9d50bb8dace8c4efcbe3dd2d006c7a5dc5b42/src/Input.ts#L70)
+Defined in: [src/Input.ts:70](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L70)
 
 The `Input` class handles action mapping and user input event listening.
 
@@ -93,7 +93,7 @@ Defined in: node\_modules/@hydroperx/event/dist/index.d.ts:2
 
 > `readonly` `static` **input**: `Input`
 
-Defined in: [src/Input.ts:74](https://github.com/hydroperx/inputaction.js/blob/81a9d50bb8dace8c4efcbe3dd2d006c7a5dc5b42/src/Input.ts#L74)
+Defined in: [src/Input.ts:74](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L74)
 
 The singleton instance of the `Input` class.
 
@@ -181,7 +181,7 @@ The event listener is appended to target's event listener list and is not append
 
 ###### callback
 
-`null` | `EventListenerOrEventListenerObject`
+`EventListenerOrEventListenerObject` | `null`
 
 ###### options?
 
@@ -227,7 +227,7 @@ Dispatches a synthetic event event to target and returns true if either event's 
 
 > **getActions**(): `Record`\<`string`, [`InputActionAtom`](../type-aliases/InputActionAtom.md)[]\>
 
-Defined in: [src/Input.ts:154](https://github.com/hydroperx/inputaction.js/blob/81a9d50bb8dace8c4efcbe3dd2d006c7a5dc5b42/src/Input.ts#L154)
+Defined in: [src/Input.ts:179](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L179)
 
 Returns the current action map in read-only mode.
 
@@ -241,7 +241,7 @@ Returns the current action map in read-only mode.
 
 > **isPressed**(`name`): `boolean`
 
-Defined in: [src/Input.ts:257](https://github.com/hydroperx/inputaction.js/blob/81a9d50bb8dace8c4efcbe3dd2d006c7a5dc5b42/src/Input.ts#L257)
+Defined in: [src/Input.ts:286](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L286)
 
 Determines whether an action is pressed.
 
@@ -265,7 +265,7 @@ Error Thrown if the action does not exist.
 
 > **justPressed**(`name`): `boolean`
 
-Defined in: [src/Input.ts:289](https://github.com/hydroperx/inputaction.js/blob/81a9d50bb8dace8c4efcbe3dd2d006c7a5dc5b42/src/Input.ts#L289)
+Defined in: [src/Input.ts:319](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L319)
 
 Determines whether an action has been just pressed right now.
 
@@ -291,7 +291,7 @@ Error Thrown if the action does not exist.
 
 > **off**\<`T`\>(`type`, `listener`, `options?`): `void`
 
-Defined in: [src/Input.ts:334](https://github.com/hydroperx/inputaction.js/blob/81a9d50bb8dace8c4efcbe3dd2d006c7a5dc5b42/src/Input.ts#L334)
+Defined in: [src/Input.ts:365](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L365)
 
 Shortcut for the `removeEventListener()` method.
 
@@ -323,7 +323,7 @@ Shortcut for the `removeEventListener()` method.
 
 > **off**(`type`, `listener`, `options?`): `void`
 
-Defined in: [src/Input.ts:339](https://github.com/hydroperx/inputaction.js/blob/81a9d50bb8dace8c4efcbe3dd2d006c7a5dc5b42/src/Input.ts#L339)
+Defined in: [src/Input.ts:370](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L370)
 
 Shortcut for the `removeEventListener()` method.
 
@@ -353,7 +353,7 @@ Shortcut for the `removeEventListener()` method.
 
 > **on**\<`T`\>(`type`, `listener`, `options?`): `void`
 
-Defined in: [src/Input.ts:320](https://github.com/hydroperx/inputaction.js/blob/81a9d50bb8dace8c4efcbe3dd2d006c7a5dc5b42/src/Input.ts#L320)
+Defined in: [src/Input.ts:351](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L351)
 
 Shortcut for the `addEventListener()` method.
 
@@ -385,7 +385,7 @@ Shortcut for the `addEventListener()` method.
 
 > **on**(`type`, `listener`, `options?`): `void`
 
-Defined in: [src/Input.ts:325](https://github.com/hydroperx/inputaction.js/blob/81a9d50bb8dace8c4efcbe3dd2d006c7a5dc5b42/src/Input.ts#L325)
+Defined in: [src/Input.ts:356](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L356)
 
 Shortcut for the `addEventListener()` method.
 
@@ -467,7 +467,7 @@ Removes the event listener in target's event listener list with the same type, c
 
 ###### callback
 
-`null` | `EventListenerOrEventListenerObject`
+`EventListenerOrEventListenerObject` | `null`
 
 ###### options?
 
@@ -487,7 +487,7 @@ Removes the event listener in target's event listener list with the same type, c
 
 > **setActions**(`map`): `void`
 
-Defined in: [src/Input.ts:161](https://github.com/hydroperx/inputaction.js/blob/81a9d50bb8dace8c4efcbe3dd2d006c7a5dc5b42/src/Input.ts#L161)
+Defined in: [src/Input.ts:186](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L186)
 
 Updates the action map, firing the `actionsUpdated` event.
 
@@ -507,9 +507,12 @@ Updates the action map, firing the `actionsUpdated` event.
 
 > `static` **display**(`param`): `string`
 
-Defined in: [src/Input.ts:81](https://github.com/hydroperx/inputaction.js/blob/81a9d50bb8dace8c4efcbe3dd2d006c7a5dc5b42/src/Input.ts#L81)
+Defined in: [src/Input.ts:84](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L84)
 
 Returns the display text of a shortcut, such as `"Ctrl+A"`.
+
+Check the [repository's respective source](https://github.com/hydroperx/inputaction.js/blob/master/src/Input.ts)
+for resulting key names in case you need overriding them.
 
 #### Parameters
 
@@ -529,9 +532,12 @@ Either an action name or a series of action atoms.
 
 > `static` **keyNameDisplay**(`name`): `string`
 
-Defined in: [src/Input.ts:109](https://github.com/hydroperx/inputaction.js/blob/81a9d50bb8dace8c4efcbe3dd2d006c7a5dc5b42/src/Input.ts#L109)
+Defined in: [src/Input.ts:118](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L118)
 
 Returns the display text of an individual key name.
+
+Check the [repository's respective source](https://github.com/hydroperx/inputaction.js/blob/master/src/Input.ts)
+for resulting key names in case you need overriding them.
 
 #### Parameters
 
