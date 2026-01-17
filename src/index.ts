@@ -1,3 +1,5 @@
+import "com.sweaxizone.w3c.extension";
+
 import Input, { input } from "./Input";
 import {
   InputActionAtom,

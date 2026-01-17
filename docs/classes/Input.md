@@ -1,12 +1,12 @@
-[**@hydroperx/inputaction**](../README.md)
+[**com.sweaxizone.inputaction**](../README.md)
 
 ***
 
-[@hydroperx/inputaction](../globals.md) / Input
+[com.sweaxizone.inputaction](../globals.md) / Input
 
 # Class: Input
 
-Defined in: [src/Input.ts:70](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L70)
+Defined in: [src/Input.ts:69](https://github.com/MatheusDS4/inputaction.js/blob/7c6511c9db3862eb6499c4716ee63a7f957c0a15/src/Input.ts#L69)
 
 The `Input` class handles action mapping and user input event listening.
 
@@ -16,7 +16,7 @@ The following code demonstrates using arrows and WASD keys
 for entity movement:
 
 ```ts
-import { input } from "@hydroperx/inputaction";
+import { input } from "com.sweaxizone.inputaction";
 
 input.setActions({
     "moveLeft": [
@@ -69,7 +69,7 @@ actionsUpdated: Event;
 
 ## Extends
 
-- `IntermediateEventTarget`\<`InputEventMap`, `this`\>
+- `SAEventTarget`
 
 ## Constructors
 
@@ -77,57 +77,71 @@ actionsUpdated: Event;
 
 > **new Input**(): `Input`
 
-Defined in: node\_modules/@hydroperx/event/dist/index.d.ts:2
-
 #### Returns
 
 `Input`
 
 #### Inherited from
 
-`(EventTarget as TypedEventTarget<InputEventMap>).constructor`
+`SAEventTarget.constructor`
 
 ## Properties
+
+### \[EventRecord\]
+
+> **\[EventRecord\]**: `object`
+
+Defined in: [src/Input.ts:75](https://github.com/MatheusDS4/inputaction.js/blob/7c6511c9db3862eb6499c4716ee63a7f957c0a15/src/Input.ts#L75)
+
+#### actionsUpdated
+
+> **actionsUpdated**: `Event`
+
+#### inputPressed
+
+> **inputPressed**: `Event`
+
+#### inputReleased
+
+> **inputReleased**: `Event`
+
+#### Overrides
+
+`SAEventTarget.[EventRecord]`
+
+***
 
 ### input
 
 > `readonly` `static` **input**: `Input`
 
-Defined in: [src/Input.ts:74](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L74)
+Defined in: [src/Input.ts:73](https://github.com/MatheusDS4/inputaction.js/blob/7c6511c9db3862eb6499c4716ee63a7f957c0a15/src/Input.ts#L73)
 
 The singleton instance of the `Input` class.
 
 ## Methods
 
-### addEventListener()
+### emit()
 
 #### Call Signature
 
-> **addEventListener**\<`K`\>(`type`, `callback`, `options?`): `void`
+> **emit**\<`K`, `C`, `EventResult`\>(`type`, `constructor`): `boolean`
 
-Defined in: node\_modules/@hydroperx/event/dist/index.d.ts:5
-
-Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-
-The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-
-When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-
-When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-
-When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-
-If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-
-The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
-
-[MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
+Defined in: node\_modules/com.sweaxizone.w3c.extension/dist/index.d.ts:28
 
 ##### Type Parameters
 
 ###### K
 
-`K` *extends* keyof `InputEventMap`
+`K` *extends* `"actionsUpdated"` \| `"inputPressed"` \| `"inputReleased"`
+
+###### C
+
+`C` *extends* (`type`) => `EventResult`
+
+###### EventResult
+
+`EventResult` *extends* `Event`
 
 ##### Parameters
 
@@ -135,91 +149,83 @@ The event listener is appended to target's event listener list and is not append
 
 `K`
 
-###### callback
+###### constructor
 
-(`event`) => `InputEventMap`\[`K`\] *extends* `Event` ? `void` : `never`
-
-###### options?
-
-`boolean` | `AddEventListenerOptions`
+`C`
 
 ##### Returns
 
-`void`
+`boolean`
 
 ##### Inherited from
 
-`(EventTarget as TypedEventTarget<InputEventMap>).addEventListener`
+`SAEventTarget.emit`
 
 #### Call Signature
 
-> **addEventListener**(`type`, `callback`, `options?`): `void`
+> **emit**\<`K`, `C`, `O`, `EventResult`\>(`type`, `constructor`, `options`): `boolean`
 
-Defined in: node\_modules/@hydroperx/event/dist/index.d.ts:6
+Defined in: node\_modules/com.sweaxizone.w3c.extension/dist/index.d.ts:29
 
-Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
+##### Type Parameters
 
-The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
+###### K
 
-When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
+`K` *extends* `"actionsUpdated"` \| `"inputPressed"` \| `"inputReleased"`
 
-When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
+###### C
 
-When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
+`C` *extends* (`type`, `options`) => `EventResult`
 
-If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
+###### O
 
-The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+`O`
 
-[MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
+###### EventResult
+
+`EventResult` *extends* `Event`
 
 ##### Parameters
 
 ###### type
 
-`string`
+`K`
 
-###### callback
+###### constructor
 
-`EventListenerOrEventListenerObject` | `null`
+`C`
 
-###### options?
+###### options
 
-`boolean` | `EventListenerOptions`
+`O`
 
 ##### Returns
 
-`void`
+`boolean`
 
 ##### Inherited from
 
-`(EventTarget as TypedEventTarget<InputEventMap>).addEventListener`
+`SAEventTarget.emit`
 
-***
+#### Call Signature
 
-### dispatchEvent()
+> **emit**(`event`): `boolean`
 
-> **dispatchEvent**(`event`): `boolean`
+Defined in: node\_modules/com.sweaxizone.w3c.extension/dist/index.d.ts:30
 
-Defined in: node\_modules/typescript/lib/lib.dom.d.ts:8309
+##### Parameters
 
-Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
-
-[MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)
-
-#### Parameters
-
-##### event
+###### event
 
 `Event`
 
-#### Returns
+##### Returns
 
 `boolean`
 
-#### Inherited from
+##### Inherited from
 
-`(EventTarget as TypedEventTarget<InputEventMap>).dispatchEvent`
+`SAEventTarget.emit`
 
 ***
 
@@ -227,7 +233,7 @@ Dispatches a synthetic event event to target and returns true if either event's 
 
 > **getActions**(): `Record`\<`string`, [`InputActionAtom`](../type-aliases/InputActionAtom.md)[]\>
 
-Defined in: [src/Input.ts:179](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L179)
+Defined in: [src/Input.ts:184](https://github.com/MatheusDS4/inputaction.js/blob/7c6511c9db3862eb6499c4716ee63a7f957c0a15/src/Input.ts#L184)
 
 Returns the current action map in read-only mode.
 
@@ -241,7 +247,7 @@ Returns the current action map in read-only mode.
 
 > **isPressed**(`name`): `boolean`
 
-Defined in: [src/Input.ts:286](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L286)
+Defined in: [src/Input.ts:291](https://github.com/MatheusDS4/inputaction.js/blob/7c6511c9db3862eb6499c4716ee63a7f957c0a15/src/Input.ts#L291)
 
 Determines whether an action is pressed.
 
@@ -265,7 +271,7 @@ Error Thrown if the action does not exist.
 
 > **justPressed**(`name`): `boolean`
 
-Defined in: [src/Input.ts:319](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L319)
+Defined in: [src/Input.ts:324](https://github.com/MatheusDS4/inputaction.js/blob/7c6511c9db3862eb6499c4716ee63a7f957c0a15/src/Input.ts#L324)
 
 Determines whether an action has been just pressed right now.
 
@@ -289,143 +295,15 @@ Error Thrown if the action does not exist.
 
 #### Call Signature
 
-> **off**\<`T`\>(`type`, `listener`, `options?`): `void`
+> **off**\<`K`\>(`type`, `listener`, `options?`): `void`
 
-Defined in: [src/Input.ts:365](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L365)
-
-Shortcut for the `removeEventListener()` method.
-
-##### Type Parameters
-
-###### T
-
-`T` *extends* keyof `InputEventMap`
-
-##### Parameters
-
-###### type
-
-`T`
-
-###### listener
-
-(`event`) => `void`
-
-###### options?
-
-`boolean` | `EventListenerOptions`
-
-##### Returns
-
-`void`
-
-#### Call Signature
-
-> **off**(`type`, `listener`, `options?`): `void`
-
-Defined in: [src/Input.ts:370](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L370)
-
-Shortcut for the `removeEventListener()` method.
-
-##### Parameters
-
-###### type
-
-`string`
-
-###### listener
-
-`Function`
-
-###### options?
-
-`boolean` | `EventListenerOptions`
-
-##### Returns
-
-`void`
-
-***
-
-### on()
-
-#### Call Signature
-
-> **on**\<`T`\>(`type`, `listener`, `options?`): `void`
-
-Defined in: [src/Input.ts:351](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L351)
-
-Shortcut for the `addEventListener()` method.
-
-##### Type Parameters
-
-###### T
-
-`T` *extends* keyof `InputEventMap`
-
-##### Parameters
-
-###### type
-
-`T`
-
-###### listener
-
-(`event`) => `void`
-
-###### options?
-
-`boolean` | `AddEventListenerOptions`
-
-##### Returns
-
-`void`
-
-#### Call Signature
-
-> **on**(`type`, `listener`, `options?`): `void`
-
-Defined in: [src/Input.ts:356](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L356)
-
-Shortcut for the `addEventListener()` method.
-
-##### Parameters
-
-###### type
-
-`string`
-
-###### listener
-
-`Function`
-
-###### options?
-
-`boolean` | `AddEventListenerOptions`
-
-##### Returns
-
-`void`
-
-***
-
-### removeEventListener()
-
-#### Call Signature
-
-> **removeEventListener**\<`K`\>(`type`, `callback`, `options?`): `void`
-
-Defined in: node\_modules/@hydroperx/event/dist/index.d.ts:7
-
-Removes the event listener in target's event listener list with the same type, callback, and options.
-
-[MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
+Defined in: node\_modules/com.sweaxizone.w3c.extension/dist/index.d.ts:26
 
 ##### Type Parameters
 
 ###### K
 
-`K` *extends* keyof `InputEventMap`
+`K` *extends* `"actionsUpdated"` \| `"inputPressed"` \| `"inputReleased"`
 
 ##### Parameters
 
@@ -433,13 +311,13 @@ Removes the event listener in target's event listener list with the same type, c
 
 `K`
 
-###### callback
+###### listener
 
-(`event`) => `InputEventMap`\[`K`\] *extends* `Event` ? `void` : `never`
+(`e`) => `void` \| `undefined`
 
 ###### options?
 
-`boolean` | `EventListenerOptions`
+`boolean` | `SAOffEventOptions`
 
 ##### Returns
 
@@ -447,17 +325,13 @@ Removes the event listener in target's event listener list with the same type, c
 
 ##### Inherited from
 
-`(EventTarget as TypedEventTarget<InputEventMap>).removeEventListener`
+`SAEventTarget.off`
 
 #### Call Signature
 
-> **removeEventListener**(`type`, `callback`, `options?`): `void`
+> **off**(`type`, `listener`, `options?`): `void`
 
-Defined in: node\_modules/@hydroperx/event/dist/index.d.ts:8
-
-Removes the event listener in target's event listener list with the same type, callback, and options.
-
-[MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
+Defined in: node\_modules/com.sweaxizone.w3c.extension/dist/index.d.ts:27
 
 ##### Parameters
 
@@ -465,13 +339,13 @@ Removes the event listener in target's event listener list with the same type, c
 
 `string`
 
-###### callback
+###### listener
 
-`EventListenerOrEventListenerObject` | `null`
+(`e`) => `void` \| `undefined`
 
 ###### options?
 
-`boolean` | `EventListenerOptions`
+`boolean` | `SAOffEventOptions`
 
 ##### Returns
 
@@ -479,7 +353,73 @@ Removes the event listener in target's event listener list with the same type, c
 
 ##### Inherited from
 
-`(EventTarget as TypedEventTarget<InputEventMap>).removeEventListener`
+`SAEventTarget.off`
+
+***
+
+### on()
+
+#### Call Signature
+
+> **on**\<`K`\>(`type`, `listener`, `options?`): `void`
+
+Defined in: node\_modules/com.sweaxizone.w3c.extension/dist/index.d.ts:24
+
+##### Type Parameters
+
+###### K
+
+`K` *extends* `"actionsUpdated"` \| `"inputPressed"` \| `"inputReleased"`
+
+##### Parameters
+
+###### type
+
+`K`
+
+###### listener
+
+(`e`) => `void` \| `undefined`
+
+###### options?
+
+`boolean` | `SAOnEventOptions`
+
+##### Returns
+
+`void`
+
+##### Inherited from
+
+`SAEventTarget.on`
+
+#### Call Signature
+
+> **on**(`type`, `listener`, `options?`): `void`
+
+Defined in: node\_modules/com.sweaxizone.w3c.extension/dist/index.d.ts:25
+
+##### Parameters
+
+###### type
+
+`string`
+
+###### listener
+
+(`e`) => `void` \| `undefined`
+
+###### options?
+
+`boolean` | `SAOnEventOptions`
+
+##### Returns
+
+`void`
+
+##### Inherited from
+
+`SAEventTarget.on`
 
 ***
 
@@ -487,7 +427,7 @@ Removes the event listener in target's event listener list with the same type, c
 
 > **setActions**(`map`): `void`
 
-Defined in: [src/Input.ts:186](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L186)
+Defined in: [src/Input.ts:191](https://github.com/MatheusDS4/inputaction.js/blob/7c6511c9db3862eb6499c4716ee63a7f957c0a15/src/Input.ts#L191)
 
 Updates the action map, firing the `actionsUpdated` event.
 
@@ -507,7 +447,7 @@ Updates the action map, firing the `actionsUpdated` event.
 
 > `static` **display**(`param`): `string`
 
-Defined in: [src/Input.ts:84](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L84)
+Defined in: [src/Input.ts:89](https://github.com/MatheusDS4/inputaction.js/blob/7c6511c9db3862eb6499c4716ee63a7f957c0a15/src/Input.ts#L89)
 
 Returns the display text of a shortcut, such as `"Ctrl+A"`.
 
@@ -532,7 +472,7 @@ Either an action name or a series of action atoms.
 
 > `static` **keyNameDisplay**(`name`): `string`
 
-Defined in: [src/Input.ts:118](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L118)
+Defined in: [src/Input.ts:123](https://github.com/MatheusDS4/inputaction.js/blob/7c6511c9db3862eb6499c4716ee63a7f957c0a15/src/Input.ts#L123)
 
 Returns the display text of an individual key name.
 

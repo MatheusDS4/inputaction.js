@@ -5,7 +5,6 @@ import {
   navigatorKeyToThis,
 } from "./InputAction";
 import assert from "assert";
-import { TypedEventTarget } from "@hydroperx/event";
 
 /**
  * The `Input` class handles action mapping and user input event listening.
@@ -16,7 +15,7 @@ import { TypedEventTarget } from "@hydroperx/event";
  * for entity movement:
  *
  * ```ts
- * import { input } from "@hydroperx/inputaction";
+ * import { input } from "com.sweaxizone.inputaction";
  *
  * input.setActions({
  *     "moveLeft": [
@@ -67,11 +66,17 @@ import { TypedEventTarget } from "@hydroperx/event";
  * actionsUpdated: Event;
  * ```
  */
-export default class Input extends (EventTarget as TypedEventTarget<InputEventMap>) {
+export default class Input extends SAEventTarget {
   /**
    * The singleton instance of the `Input` class.
    */
   public static readonly input = new Input();
+
+  declare [EventRecord]: {
+    inputPressed: Event;
+    inputReleased: Event;
+    actionsUpdated: Event;
+  };
 
   /**
    * Returns the display text of a shortcut, such as `"Ctrl+A"`.
@@ -191,7 +196,7 @@ export default class Input extends (EventTarget as TypedEventTarget<InputEventMa
     };
 
     // Dispatch update event
-    this.dispatchEvent(new Event("actionsUpdated"));
+    this.emit(new Event("actionsUpdated"));
   }
 
   private static builtin(): Record<string, InputActionAtom[]> {
@@ -237,7 +242,7 @@ export default class Input extends (EventTarget as TypedEventTarget<InputEventMa
 
           // Dispatch pressed event
           const evt1 = new Event("inputPressed", { cancelable: true });
-          const r = input.dispatchEvent(evt1);
+          const r = input.emit(evt1);
           if (evt1.defaultPrevented) {
             evt.preventDefault();
           }
@@ -269,7 +274,7 @@ export default class Input extends (EventTarget as TypedEventTarget<InputEventMa
 
           // Dispatch released event
           const evt1 = new Event("inputReleased", { cancelable: true });
-          const r = input.dispatchEvent(evt1);
+          const r = input.emit(evt1);
           if (evt1.defaultPrevented) {
             evt.preventDefault();
           }
@@ -344,44 +349,7 @@ export default class Input extends (EventTarget as TypedEventTarget<InputEventMa
     }
     return false;
   }
-
-  /**
-   * Shortcut for the `addEventListener()` method.
-   */
-  public on<T extends keyof InputEventMap>(
-    type: T,
-    listener: (event: (InputEventMap[T] extends Event ? InputEventMap[T] : never)) => void,
-    options?: boolean | AddEventListenerOptions,
-  ): void;
-  public on(type: string, listener: Function, options?: boolean | AddEventListenerOptions): void;
-
-  public on(type: string, listener: Function, options?: boolean | AddEventListenerOptions) {
-    this.addEventListener(type as any, listener as any, options);
-  }
-
-  /**
-   * Shortcut for the `removeEventListener()` method.
-   */
-  public off<T extends keyof InputEventMap>(
-    type: T,
-    listener: (event: (InputEventMap[T] extends Event ? InputEventMap[T] : never)) => void,
-    options?: boolean | EventListenerOptions,
-  ): void;
-  public off(type: string, listener: Function, options?: boolean | EventListenerOptions): void;
-
-  public off(type: string, listener: Function, options?: boolean | EventListenerOptions) {
-    this.removeEventListener(type as any, listener as any, options);
-  }
 }
-
-/**
- * Event types dispatched by `Input`.
- */
-export type InputEventMap = {
-  inputPressed: Event;
-  inputReleased: Event;
-  actionsUpdated: Event;
-};
 
 type PressedState = {
   pressed: boolean;

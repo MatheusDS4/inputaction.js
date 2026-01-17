@@ -1,8 +1,8 @@
 {
-  "name": "@hydroperx/inputaction",
-  "version": "1.1.2",
+  "name": "com.sweaxizone.inputaction",
+  "version": "1.0.0",
   "description": "Input actions library.",
-  "repository": "https://github.com/hydroperx/inputaction.js",
+  "repository": "https://github.com/MatheusDS4/inputaction.js",
   "license": "Apache-2.0",
   "author": "Hydroper <HydroperFox@gmail.com>",
   "keywords": ["input", "shortcut", "keyboard", "key combination"],
@@ -19,8 +19,8 @@
     }
   },
   "dependencies": {
-    "@hydroperx/event": "^1.0.0",
-    "assert": "^2.1.0"
+    "assert": "^2.1.0",
+    "com.sweaxizone.w3c.extension": "^1"
   },
   "devDependencies": {
     "@types/assert": "^1.5.10",

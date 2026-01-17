@@ -1,13 +1,13 @@
-[**@hydroperx/inputaction**](../README.md)
+[**com.sweaxizone.inputaction**](../README.md)
 
 ***
 
-[@hydroperx/inputaction](../globals.md) / input
+[com.sweaxizone.inputaction](../globals.md) / input
 
 # Variable: input
 
 > `const` **input**: [`Input`](../classes/Input.md) = `Input.input`
 
-Defined in: [src/Input.ts:398](https://github.com/hydroperx/inputaction.js/blob/90257dc29b248a334684b9cc94c6b7b2191d122d/src/Input.ts#L398)
+Defined in: [src/Input.ts:366](https://github.com/MatheusDS4/inputaction.js/blob/7c6511c9db3862eb6499c4716ee63a7f957c0a15/src/Input.ts#L366)
 
 The singleton instance of the `Input` class.

@@ -1,8 +1,8 @@
-[**@hydroperx/inputaction**](README.md)
+[**com.sweaxizone.inputaction**](README.md)
 
 ***
 
-# @hydroperx/inputaction
+# com.sweaxizone.inputaction
 
 ## Classes
 

@@ -17,7 +17,7 @@ Features:
 ## Getting started
 
 ```ts
-import { input } from "@hydroperx/inputaction";
+import { input } from "com.sweaxizone.inputaction";
 
 input.setActions({
     "moveLeft": [
