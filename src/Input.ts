@@ -4,7 +4,6 @@ import {
   InputActionKeyName,
   navigatorKeyToThis,
 } from "./InputAction";
-import assert from "assert";
 
 /**
  * The `Input` class handles action mapping and user input event listening.
